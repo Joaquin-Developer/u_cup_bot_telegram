@@ -1,0 +1,16 @@
+Comandos del bot:
+
+/grupo <grupo>
+Obtener todos los partidos con sus resultados, para un grupo
+Ejemplo: /grupo F
+
+/equipo <nombre_equipo>
+Obtener todos los partidos con sus resultados, para un equipo particular
+Ejemplo: /equipo Nacional
+Nota: Puedes escribir "NACIONAL", "nacional", o "NAciOnAl", y te entenderé :)
+
+/estadisticas <grupo>
+Obtener as estadisticas de los equipos por grupo (puntos, goles a favor y en contra, posiciones)
+
+
+Copa de la Unión 2023 - BOT v1
