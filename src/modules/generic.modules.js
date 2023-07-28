@@ -22,10 +22,15 @@ function generateResponseByData(data) {
         respTxt += `- ${partido.equipo_local} `
 
         if (partido.status_partido === "JUGADO") {
-            respTxt += `${partido.goles_local} - ${partido.goles_visitante} `
+            if (partido.penales_local && partido.penales_visitante) {
+                respTxt += `${partido.goles_local}(${partido.penales_local}) - (${partido.penales_visitante})${partido.goles_visitante} `
+            } else {
+                respTxt += `${partido.goles_local} - ${partido.goles_visitante} `
+            }
         } else {
             respTxt += "vs "
         }
+
         respTxt += `${partido.equipo_visitante}\n\n`
     })
     return respTxt
@@ -82,18 +87,24 @@ functions.getTeamPartidos = async (team) => {
     jugados.forEach(info => {
         txt += `${info.id_partido} - ${info.equipo_local} vs ${info.equipo_visitante}\n`
     })
-    txt += "\n/resultado <id_partido> <GolLocal>-<GolVisitante>\nEjemplo: /resultado 102 4-1"
+    txt += "\n/resultado <id_partido> <GolLocal>-<GolVisitante> --p <PenalLocal>-<PenalVisitante>\n"
+    txt += "Ejemplo 1: /resultado 102 4-1\nEjemplo 2: /resultado 101 1-1 --p 5-4"
     return txt
 }
 
 
-functions.setTeamPartido = async (partidoId, golLocal, golVisitante) => {
+functions.setTeamPartido = async (partidoId, golLocal, golVisitante, penalLocal = null, penalVisitante = null) => {
     const api = config.api
     let url = api.API_URL + api.ENDPOINTS["set_results_group"]
     url = utils.formatString(url, { partido_id: partidoId })
     const body = {
         "goles_local": golLocal,
         "goles_visitante": golVisitante
+    }
+
+    if (penalLocal && penalVisitante) {
+        body["penales_local"] = penalLocal
+        body["penales_visitante"] = penalVisitante
     }
 
     const resp = await utils.fetch(url, utils.TypeRequest.PUT, body)
