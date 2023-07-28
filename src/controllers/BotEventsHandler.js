@@ -62,8 +62,15 @@ class BotEventsHandler {
         const idPartido = parseInt(message.split(" ")[0])
         const golLocal = parseInt(message.split(" ")[1].split("-")[0])
         const golVisitante = parseInt(message.split(" ")[1].split("-")[1])
+        let penalLocal, penalVisitante
+
+        if (message.indexOf("--p ") !== -1) {
+            penalLocal = parseInt(message.split("--p ")[1].split("-")[0])
+            penalVisitante = parseInt(message.split("--p ")[1].split("-")[1])
+        }
+
         try {
-            await functions.setTeamPartido(idPartido, golLocal, golVisitante)
+            await functions.setTeamPartido(idPartido, golLocal, golVisitante, penalLocal, penalVisitante)
             ctx.reply("¡Datos actualizados!")
         } catch (error) {
             ctx.reply("Se produjo un error inesperado. No se pudo actualizar la información.")
