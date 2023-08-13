@@ -33,7 +33,7 @@ class BotEventsHandler {
         let grupoName = message.split("/grupo ")[1]
 
         if (!grupoName) {
-            ctx.reply("Dato incorrecto! Debes proporcionar un gupo valido")
+            return ctx.reply("Dato incorrecto! Debes proporcionar un gupo valido")
         }
 
         grupoName = grupoName.toUpperCase().trim()
@@ -46,7 +46,7 @@ class BotEventsHandler {
         let teamName = message.split("/equipo ")[1]
 
         if (!teamName) {
-            ctx.reply("Dato incorrecto! Debes proporcionar un equipo valido")
+            return ctx.reply("Dato incorrecto! Debes proporcionar un equipo valido")
         }
         teamName = teamName.toUpperCase().trim()
         ctx.reply(await functions.getTeamResults(teamName))
@@ -104,7 +104,7 @@ class BotEventsHandler {
         let grupoName = message.split("/estadisticas ")[1]
 
         if (!grupoName) {
-            ctx.reply("Dato incorrecto! Debes proporcionar un gupo valido")
+            return ctx.reply("Dato incorrecto! Debes proporcionar un gupo valido")
         }
 
         grupoName = grupoName.toUpperCase().trim()
@@ -117,7 +117,7 @@ class BotEventsHandler {
         let faseName = message.split("/fase ")[1]
 
         if (!faseName) {
-            ctx.reply("Dato incorrecto! Debes proporcionar un nombre de fase valido. (8vos, 4tos, SemiFinal, 3rd Puesto, Final)")
+            return ctx.reply("Dato incorrecto! Debes proporcionar un nombre de fase valido. (8vos, 4tos, SemiFinal, 3rd Puesto, Final)")
         }
         faseName = faseName.toLowerCase().trim()
         ctx.reply(await functions.getResultsByFase(faseName))
