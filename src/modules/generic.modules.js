@@ -140,14 +140,20 @@ functions.getResultsByFase = async (faseName) => {
     url = utils.formatString(url, { fase_id: faseId })
     const data = await utils.fetch(url)
 
-    const ida = data.slice(0, data.length / 2)
-    const vuelta = data.slice(data.length / 2, data.length)
+    let txt = `Partidos de la fase ${faseName}:\n\n`
 
-    let txt = `Partidos de la fase ${faseName}:\n\nIda:\n\n`
+    // des-hardcodear esto!!!
+    if (faseId === 1 || faseId === 2) {
+        txt += "Ida:\n\n"
+        const ida = data.slice(0, data.length / 2)
+        const vuelta = data.slice(data.length / 2, data.length)
+        txt += generateResponseByData(ida)
+        txt += "Vuelta:\n\n"
+        txt += generateResponseByData(vuelta)
+    } else {
+        txt += generateResponseByData(data)
+    }
 
-    txt += generateResponseByData(ida)
-    txt += "Vuelta:\n\n"
-    txt += generateResponseByData(vuelta)
     txt += "Copa Unión 2023."
     return txt
 }
