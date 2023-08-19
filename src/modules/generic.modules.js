@@ -2,7 +2,7 @@
  * Logica de cada funcionalidad del bot
  */
 
-const { AxiosFetchError } = require("../exceptions/exceptions")
+const { AxiosFetchError, IncorrectFaseData } = require("../exceptions/exceptions")
 const config = require("../../config")
 const utils = require("../utils/utils")
 
@@ -135,6 +135,10 @@ functions.getGroupStatistics = async (group) => {
 
 functions.getResultsByFase = async (faseName) => {
     const faseId = utils.fasesMap(faseName)
+    if (!faseId) {
+        throw new IncorrectFaseData()
+    }
+
     const api = config.api
     let url = api.API_URL + api.ENDPOINTS["get_results_fase"]
     url = utils.formatString(url, { fase_id: faseId })

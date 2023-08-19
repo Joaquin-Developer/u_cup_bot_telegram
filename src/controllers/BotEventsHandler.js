@@ -4,6 +4,7 @@
  */
 
 const functions = require("../modules/generic.modules")
+const { IncorrectFaseData } = require("../exceptions/exceptions")
 
 
 class BotEventsHandler {
@@ -116,11 +117,19 @@ class BotEventsHandler {
         console.log(`Mensaje recibido de ${ctx.message.from.first_name}`)
         let faseName = message.split("/fase ")[1]
 
-        if (!faseName) {
-            return ctx.reply("Dato incorrecto! Debes proporcionar un nombre de fase valido. (8vos, 4tos, SemiFinal, 3rd Puesto, Final)")
+        try {
+            if (!faseName) {
+                throw new IncorrectFaseData()
+            }
+
+            faseName = faseName.toLowerCase().trim()
+            ctx.reply(await functions.getResultsByFase(faseName))
+
+        } catch (error) {
+            console.error(error)
+            ctx.reply(error.toString())
         }
-        faseName = faseName.toLowerCase().trim()
-        ctx.reply(await functions.getResultsByFase(faseName))
+
     }
 
     static async resultadoFase(ctx) { }
