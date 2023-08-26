@@ -17,6 +17,7 @@ module.exports = {
         TELEGRAM_TOKEN: process.env["TELEGRAM_BOT_UCUP23_TOKEN"] || "6055957945:AAFWg4T2dX0pG-w710tEiXJMx6S2Xzm8lyk",
     },
     ERR_MESSAGES: {
-        CONSTANT_ERR_COMMAND: "Modo incorrecto de úso.\nEscribe /help para mas información."
+        CONSTANT_ERR_COMMAND: "Modo incorrecto de úso.\nEscribe /help para mas información.",
+        INCORRECT_FASE_DATA: "Dato incorrecto! Debes proporcionar un nombre de fase valido. (8vos, 4tos, SemiFinal, 3er Puesto, Final)"
     }
 }
