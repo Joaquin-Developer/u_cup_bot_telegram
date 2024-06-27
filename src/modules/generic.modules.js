@@ -52,7 +52,7 @@ functions.getGroupResults = async (group) => {
     txt += generateResponseByData(ida)
     txt += "Vuelta:\n\n"
     txt += generateResponseByData(vuelta)
-    txt += "Copa Unión 2023."
+    txt += "Copa Unión 2024."
     return txt
 }
 
@@ -75,7 +75,7 @@ functions.getTeamResults = async (team, returnOnlyData = false) => {
 
     let txt = `Partidos del Equipo ${team}:\n\n`
     txt += generateResponseByData(data)
-    txt += "Copa Unión 2023."
+    txt += "Copa Unión 2024."
     return txt
 }
 
@@ -158,7 +158,7 @@ functions.getResultsByFase = async (faseName) => {
         txt += generateResponseByData(data)
     }
 
-    txt += "Copa Unión 2023."
+    txt += "Copa Unión 2024."
     return txt
 }
 

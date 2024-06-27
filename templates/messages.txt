@@ -13,4 +13,4 @@ Nota: Puedes escribir "NACIONAL", "nacional", o "NAciOnAl", y te entenderé :)
 Obtener as estadisticas de los equipos por grupo (puntos, goles a favor y en contra, posiciones)
 
 
-Copa de la Unión 2023 - BOT v1
+Copa de la Unión 2024 - BOT v2
